@@ -15,6 +15,8 @@ namespace npcGenerator.Model
         private string ideal;
         private string weakness;
 
+        public int Id { get; set; }
+
         public string Feature
         {
             get { return feature; }
