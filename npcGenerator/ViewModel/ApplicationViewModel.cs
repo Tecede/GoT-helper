@@ -8,12 +8,13 @@ namespace npcGenerator.Model
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
-        Phone selectedPhone;
+        Character selectedCharacter;
 
         IFileService fileService;
         IDialogService dialogService;
 
-        public ObservableCollection<Phone> Phones { get; set; }
+        // Коллекция, уведомляющая при изменении
+        public ObservableCollection<Character> Characters { get; set; }
 
         // команда сохранения файла
         private RelayCommand saveCommand;
@@ -28,7 +29,7 @@ namespace npcGenerator.Model
                       {
                           if (dialogService.SaveFileDialog() == true)
                           {
-                              fileService.Save(dialogService.FilePath, Phones.ToList());
+                              fileService.Save(dialogService.FilePath, Characters.ToList());
                               dialogService.ShowMessage("Файл сохранен");
                           }
                       }
@@ -53,10 +54,10 @@ namespace npcGenerator.Model
                       {
                           if (dialogService.OpenFileDialog() == true)
                           {
-                              var phones = fileService.Open(dialogService.FilePath);
-                              Phones.Clear();
-                              foreach (var p in phones)
-                                  Phones.Add(p);
+                              var characters = fileService.Open(dialogService.FilePath);
+                              Characters.Clear();
+                              foreach (var p in characters)
+                                  Characters.Add(p);
                               dialogService.ShowMessage("Файл открыт");
                           }
                       }
@@ -77,9 +78,9 @@ namespace npcGenerator.Model
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                      Phone phone = new Phone();
-                      Phones.Insert(0, phone);
-                      SelectedPhone = phone;
+                      Character character = new Character();
+                      Characters.Insert(0, character);
+                      selectedCharacter = character;
                   }));
             }
         }
@@ -92,13 +93,13 @@ namespace npcGenerator.Model
                 return removeCommand ??
                   (removeCommand = new RelayCommand(obj =>
                   {
-                      Phone phone = obj as Phone;
-                      if (phone != null)
+                      Character character = obj as Character;
+                      if (character != null)
                       {
-                          Phones.Remove(phone);
+                          Characters.Remove(character);
                       }
                   },
-                 (obj) => Phones.Count > 0));
+                 (obj) => Characters.Count > 0));
             }
         }
         private RelayCommand doubleCommand;
@@ -109,28 +110,29 @@ namespace npcGenerator.Model
                 return doubleCommand ??
                   (doubleCommand = new RelayCommand(obj =>
                   {
-                      Phone phone = obj as Phone;
-                      if (phone != null)
+                      Character character = obj as Character;
+                      if (character != null)
                       {
-                          Phone phoneCopy = new Phone
+                          Character characterCopy = new Character
                           {
-                              Company = phone.Company,
-                              Price = phone.Price,
-                              Title = phone.Title
+                              Feature = character.Feature,
+                              Attachment = character.Attachment,
+                              Ideal = character.Ideal,
+                              Weakness = character.Weakness
                           };
-                          Phones.Insert(0, phoneCopy);
+                          Characters.Insert(0, characterCopy);
                       }
                   }));
             }
         }
 
-        public Phone SelectedPhone
+        public Character SelectedCharacter
         {
-            get { return selectedPhone; }
+            get { return selectedCharacter; }
             set
             {
-                selectedPhone = value;
-                OnPropertyChanged("SelectedPhone");
+                selectedCharacter = value;
+                OnPropertyChanged("SelectedCharacter");
             }
         }
 
@@ -139,21 +141,20 @@ namespace npcGenerator.Model
             this.dialogService = dialogService;
             this.fileService = fileService;
 
-            // данные по умлолчанию
-            Phones = new ObservableCollection<Phone>
+            Characters = new ObservableCollection<Character>
             {
-                new Phone { Title="iPhone 7", Company="Apple", Price=56000 },
-                new Phone {Title="Galaxy S7 Edge", Company="Samsung", Price =60000 },
-                new Phone {Title="Elite x3", Company="HP", Price=56000 },
-                new Phone {Title="Mi5S", Company="Xiaomi", Price=35000 }
+                new Character {Feature = "Feat1", Ideal = "Ideal1", Attachment = "Att1", Weakness = "Weak1" },
+                new Character {Feature = "Feat2", Ideal = "Ideal2", Attachment = "Att2", Weakness = "Weak2" },
+                new Character {Feature = "Feat3", Ideal = "Ideal3", Attachment = "Att3", Weakness = "Weak3" },
+                new Character {Feature = "Feat4", Ideal = "Ideal4", Attachment = "Att4", Weakness = "Weak4" },
             };
         }
 
+        // Метод, обрабатывающий событие PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void OnPropertyChanged([CallerMemberName]string prop = "") // Получает имя метода, вызывающего этот метод
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop)); // Получает имя измененного свойства
         }
     }
 }

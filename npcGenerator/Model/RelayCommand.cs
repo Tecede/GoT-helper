@@ -3,14 +3,14 @@ using System.Windows.Input;
 
 namespace npcGenerator.Model
 {
-    public class RelayCommand : ICommand
+    public class RelayCommand : ICommand // Интерфейс, обеспечивающий поведение команд
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
 
         public event EventHandler CanExecuteChanged // Вызывается при изменении условий
         {
-            add { CommandManager.RequerySuggested += value; }
+            add { CommandManager.RequerySuggested += value; } // Методы, обработчики событий
             remove { CommandManager.RequerySuggested -= value; }
         }
 

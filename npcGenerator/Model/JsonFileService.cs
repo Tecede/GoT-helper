@@ -1,35 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace npcGenerator.Model
 {
     public class JsonFileService : IFileService
     {
-        public List<Phone> Open(string filename)
+        public List<Character> Open(string filename)
         {
-            List<Phone> phones = new List<Phone>();
-            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Phone>));
+            List<Character> characters = new List<Character>();
+            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Character>));
 
             using(FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
             {
-                phones = jsonFormatter.ReadObject(fs) as List<Phone>;
+                characters = jsonFormatter.ReadObject(fs) as List<Character>;
             }
 
-            return phones;
+            return characters;
         }
 
-        public void Save(string filename, List<Phone> phoneList)
+        public void Save(string filename, List<Character> characterList)
         {
-            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Phone>));
+            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<Character>));
             
             using(FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                jsonFormatter.WriteObject(fs, phoneList);
+                jsonFormatter.WriteObject(fs, characterList);
             }
         }
     }

@@ -4,7 +4,7 @@ namespace npcGenerator.Model
 {
     public interface IFileService
     {
-        List<Phone> Open(string filename);
-        void Save(string filename, List<Phone> phoneList);
+        List<Character> Open(string filename);
+        void Save(string filename, List<Character> characterList);
     }
 }

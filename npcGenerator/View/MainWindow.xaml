@@ -35,14 +35,15 @@
                 <MenuItem Header="Сохранить" Command="{Binding SaveCommand}" />
             </MenuItem>
         </Menu>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Phones}"
-                 SelectedItem="{Binding SelectedPhone}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding Characters}"
+                 SelectedItem="{Binding SelectedCharacter}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=Title}" />
-                        <TextBlock Text="{Binding Path=Company}" />
-                        <TextBlock Text="{Binding Path=Price}" />
+                        <TextBlock FontSize="18" Text="{Binding Path=Feature}" />
+                        <TextBlock Text="{Binding Path=Attachment}" />
+                        <TextBlock Text="{Binding Path=Ideal}" />
+                        <TextBlock Text="{Binding Path=Weakness}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -50,26 +51,19 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Command="{Binding AddCommand}">+</Button>
             <Button Command="{Binding RemoveCommand}"
-                    CommandParameter="{Binding SelectedPhone}">-</Button>
-            <Button Content="2x">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction
-                            Command="{Binding DoubleCommand}"
-                            CommandParameter="{Binding SelectedPhone}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
+                    CommandParameter="{Binding SelectedCharacter}">-</Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedPhone}">
+        <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedCharacter}">
             <TextBlock Text="Выбранный элемент"  />
-            <TextBlock Text="Модель" />
-            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="Производитель" />
-            <TextBox Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="Цена" />
-            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Черта характера" />
+            <TextBox Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Привязанность" />
+            <TextBox Text="{Binding Attachment, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Идеал" />
+            <TextBox Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Слабость" />
+            <TextBox Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </Grid>
 </Window>
