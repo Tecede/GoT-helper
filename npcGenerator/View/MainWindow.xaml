@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:npcGenerator"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-       Title="MainWindow" Height="350" Width="525">
+       Title="MainWindow" Height="450" Width="525">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -21,8 +21,8 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="220*" />
+            <ColumnDefinition Width="300*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -40,10 +40,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=Feature}" />
-                        <TextBlock Text="{Binding Path=Attachment}" />
-                        <TextBlock Text="{Binding Path=Ideal}" />
-                        <TextBlock Text="{Binding Path=Weakness}" />
+                        <TextBlock FontSize="18" Text="{Binding Path=Name}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -57,13 +54,13 @@
         <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedCharacter}">
             <TextBlock Text="Выбранный элемент"  />
             <TextBlock Text="Черта характера" />
-            <TextBox Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
             <TextBlock Text="Привязанность" />
-            <TextBox Text="{Binding Attachment, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding Attachment, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
             <TextBlock Text="Идеал" />
-            <TextBox Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
             <TextBlock Text="Слабость" />
-            <TextBox Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
         </StackPanel>
     </Grid>
 </Window>

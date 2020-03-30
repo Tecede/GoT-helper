@@ -173,6 +173,10 @@
     <Compile Include="Migrations\20200329090016_Initial.designer.cs">
       <DependentUpon>20200329090016_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200330064832_second.cs" />
+    <Compile Include="Migrations\20200330064832_second.designer.cs">
+      <DependentUpon>20200330064832_second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CharacterContextModelSnapshot.cs" />
     <Compile Include="Model\CharacterContext.cs" />
     <Compile Include="Model\Character.cs" />
