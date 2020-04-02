@@ -9,7 +9,7 @@ namespace npcGenerator
         {
             InitializeComponent();
 
-            DataContext = new MainWindowViewModel(); // Связка представления и модели Phone
+            DataContext = new ApplicationViewModel(new DefaultDialogService(), new JsonFileService()); // Связка представления и модели Phone
         }
     }
 }
