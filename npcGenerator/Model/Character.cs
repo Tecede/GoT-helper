@@ -27,9 +27,9 @@ namespace npcGenerator.Model
         private static List<string> IdealPool = new List<string>();
         private static List<string> WeaknessPool = new List<string>();
 
-        public static void StartUpload()
+        private static List<string> Upload(string path, List<string> feature)
         {
-            using (StreamReader features = new StreamReader("../../Data/Feature.txt"))
+            using (StreamReader features = new StreamReader($"../../Data/{path}.txt"))
             {
                 while (true)
                 {
@@ -38,48 +38,20 @@ namespace npcGenerator.Model
                     if (temp == null)
                         break;
                     else
-                        FeaturePool.Add(temp);
+                        feature.Add(temp);
                 }
+
+                return feature;
             }
+        }
 
-            using (StreamReader attachments = new StreamReader("../../Data/Attachment.txt"))
-            {
-                while (true)
-                {
-                    string temp = attachments.ReadLine();
+        public static void StartUpload()
+        {
+           FeaturePool = Upload("Feature", FeaturePool);
+           AttachmentPool = Upload("Attachment", AttachmentPool);
+           IdealPool = Upload("Ideal", IdealPool);
+           WeaknessPool = Upload("weakness", WeaknessPool);
 
-                    if (temp == null)
-                        break;
-                    else
-                        AttachmentPool.Add(temp);
-                }
-            }
-
-            using (StreamReader weaknesses = new StreamReader("../../Data/Weakness.txt"))
-            {
-                while (true)
-                {
-                    string temp = weaknesses.ReadLine();
-
-                    if (temp == null)
-                        break;
-                    else
-                        WeaknessPool.Add(temp);
-                }
-            }
-
-            using (StreamReader ideals = new StreamReader("../../Data/Ideal.txt"))
-            {
-                while (true)
-                {
-                    string temp = ideals.ReadLine();
-
-                    if (temp == null)
-                        break;
-                    else
-                        IdealPool.Add(temp);
-                }
-            }
         }
 
         public Character()

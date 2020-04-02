@@ -145,10 +145,10 @@ namespace npcGenerator.Model
 
             Characters = new ObservableCollection<Character>
             {
-                new Character {Name = "Name1", Feature = "Feat1", Ideal = "Ideal1", Attachment = "Att1", Weakness = "Weak1" },
-                new Character {Name = "Name2", Feature = "Feat2", Ideal = "Ideal2", Attachment = "Att2", Weakness = "Weak2" },
-                new Character {Name = "Name3", Feature = "Feat3", Ideal = "Ideal3", Attachment = "Att3", Weakness = "Weak3" },
-                new Character {Name = "Name3", Feature = "Feat4", Ideal = "Ideal4", Attachment = "Att4", Weakness = "Weak4" },
+                new Character(),
+                new Character(),
+                new Character(),
+                new Character()
             };
         }
 
