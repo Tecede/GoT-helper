@@ -51,6 +51,7 @@ namespace npcGenerator.Model
            AttachmentPool = Upload("Attachment", AttachmentPool);
            IdealPool = Upload("Ideal", IdealPool);
            WeaknessPool = Upload("weakness", WeaknessPool);
+
         }
 
         public Character()

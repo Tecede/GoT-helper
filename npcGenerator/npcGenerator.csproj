@@ -186,10 +186,6 @@
     <Compile Include="Model\JsonFileService.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
-    <Page Include="View\Lords.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -197,10 +193,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModel\LordsViewModel.cs" />
-    <Compile Include="View\Lords.xaml.cs">
-      <DependentUpon>Lords.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
