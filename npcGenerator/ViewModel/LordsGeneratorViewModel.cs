@@ -1,12 +1,13 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
+﻿using npcGenerator.Model;
 using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
-namespace npcGenerator.Model
+namespace npcGenerator.ViewModel
 {
-    public class ApplicationViewModel : INotifyPropertyChanged
+    class LordsGeneratorViewModel : INotifyPropertyChanged
     {
         Character selectedCharacter;
 
@@ -15,6 +16,22 @@ namespace npcGenerator.Model
 
         // Коллекция, уведомляющая при изменении
         public ObservableCollection<Character> Characters { get; set; }
+
+        public LordsGeneratorViewModel(IDialogService dialogService, IFileService fileService)
+        {
+            this.dialogService = dialogService;
+            this.fileService = fileService;
+
+            Character.StartUpload();
+
+            Characters = new ObservableCollection<Character>
+            {
+                new Character(),
+                new Character(),
+                new Character(),
+                new Character()
+            };
+        }
 
         // команда сохранения файла
         private RelayCommand saveCommand;
@@ -134,22 +151,6 @@ namespace npcGenerator.Model
                 selectedCharacter = value;
                 OnPropertyChanged("SelectedCharacter");
             }
-        }
-
-        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
-        {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
-
-            Character.StartUpload();
-
-            Characters = new ObservableCollection<Character>
-            {
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character()
-            };
         }
 
         // Метод, обрабатывающий событие PropertyChanged
