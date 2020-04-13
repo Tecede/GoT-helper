@@ -6,61 +6,21 @@
         xmlns:local="clr-namespace:npcGenerator"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-       Title="MainWindow" Height="450" Width="525">
-    <Window.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14" />
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="14" />
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Width" Value="40" />
-            <Setter Property="Margin" Value="5" />
-        </Style>
-    </Window.Resources>
+        Title="MainWindow" Height="450" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220*" />
-            <ColumnDefinition Width="300*" />
+            <ColumnDefinition Width="96*" />
+            <ColumnDefinition Width="421*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="0.2*" />
-        </Grid.RowDefinitions>
-        <Menu Grid.ColumnSpan="2" >
-            <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" Command="{Binding OpenCommand}" />
-                <MenuItem Header="Сохранить" Command="{Binding SaveCommand}" />
-            </MenuItem>
-        </Menu>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Characters}"
-                 SelectedItem="{Binding SelectedCharacter}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=Name}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Command="{Binding AddCommand}">+</Button>
-            <Button Command="{Binding RemoveCommand}"
-                    CommandParameter="{Binding SelectedCharacter}">-</Button>
+        <StackPanel>
+            <Button Command="{Binding MainClick}" Content="Main" />
+            <Button Command="{Binding TestClick}" Content="Test" />
+            <Button Command="{Binding ExitClick}" Content="Exit" />
         </StackPanel>
-
-        <StackPanel Grid.Row="1" Grid.Column="1" DataContext="{Binding SelectedCharacter}">
-            <TextBlock Text="Выбранный элемент"  />
-            <TextBlock Text="Черта характера" />
-            <TextBlock Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-            <TextBlock Text="Привязанность" />
-            <TextBlock Text="{Binding Attachment, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-            <TextBlock Text="Идеал" />
-            <TextBlock Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-            <TextBlock Text="Слабость" />
-            <TextBlock Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-        </StackPanel>
+        <Frame
+            Grid.Column="1"
+            Content="{Binding CurrentPage}"
+            NavigationUIVisibility="Hidden"
+            Opacity="{Binding FrameOpacity}" />
     </Grid>
 </Window>

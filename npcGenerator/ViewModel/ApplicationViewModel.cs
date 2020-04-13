@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using System;
 using System.Linq;
+using System.Windows.Controls;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace npcGenerator.Model
 {
@@ -10,11 +13,87 @@ namespace npcGenerator.Model
     {
         Character selectedCharacter;
 
+        // TODO: Вынести в модель
+        private Page Main;
+        private Page Exit;
+        private Page Test;
+
+        private Page currentPage;
+        public Page CurrentPage
+        {
+            get { return currentPage; }
+            set
+            {
+                currentPage = value;
+                OnPropertyChanged("CurrentPage");
+            }
+        }
+
+        private double frameOpacity;
+        public double FrameOpacity
+        {
+            get { return frameOpacity; }
+            set
+            {
+                frameOpacity = value;
+                OnPropertyChanged("FrameOpacity");
+            }
+        }
+
         IFileService fileService;
         IDialogService dialogService;
 
         // Коллекция, уведомляющая при изменении
         public ObservableCollection<Character> Characters { get; set; }
+
+        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
+        {
+            this.dialogService = dialogService;
+            this.fileService = fileService;
+
+            Main = new View.Main();
+            Test = new View.Test();
+            Exit = new View.Exit();
+
+            FrameOpacity = 1;
+            CurrentPage = Main;
+
+            Character.StartUpload();
+
+            Characters = new ObservableCollection<Character>
+            {
+                new Character(),
+                new Character(),
+                new Character(),
+                new Character()
+            };
+        }
+
+        private RelayCommand testClick;
+        public RelayCommand TestClick
+        {
+            get
+            {
+                return testClick ??
+                    (testClick = new RelayCommand(obj=>
+                    {
+                        SlowOpacity(Test);
+                    }));
+            }
+        }
+
+        private RelayCommand mainClick;
+        public RelayCommand MainClick
+        {
+            get
+            {
+                return mainClick ??
+                    (mainClick = new RelayCommand(obj =>
+                    {
+                        SlowOpacity(Main);
+                    }));
+            }
+        }
 
         // команда сохранения файла
         private RelayCommand saveCommand;
@@ -136,20 +215,23 @@ namespace npcGenerator.Model
             }
         }
 
-        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
+        private async void SlowOpacity(Page page)
         {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
-
-            Character.StartUpload();
-
-            Characters = new ObservableCollection<Character>
+            await Task.Factory.StartNew(() =>
             {
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character()
-            };
+                for(double i = 1.0; i > 0.0; i-= 0.1)
+                {
+                    FrameOpacity = i;
+                    Thread.Sleep(50);
+                }
+                CurrentPage = page;
+
+                for (double i = 0.0; i < 1.1; i += 0.1)
+                {
+                    FrameOpacity = i;
+                    Thread.Sleep(50);
+                }
+            });
         }
 
         // Метод, обрабатывающий событие PropertyChanged
