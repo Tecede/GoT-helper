@@ -17,6 +17,13 @@ namespace npcGenerator.Model
         private string attachment;
         private string ideal;
         private string weakness;
+        private int age;
+        private string gender;
+        private string clan;
+        private string knowledge;
+        private string race;
+        private string heroImgPath;
+       
 
         private static List<string> NamePool = new List<string>();
         private static List<string> SurnamePool = new List<string>();
@@ -62,6 +69,45 @@ namespace npcGenerator.Model
             ideal = IdealPool.ElementAt(rnd.Next(0, IdealPool.Count()));
             weakness = WeaknessPool.ElementAt(rnd.Next(0, WeaknessPool.Count()));
             name = NamePool.ElementAt(rnd.Next(0, NamePool.Count()));
+
+            age = rnd.Next(16, 59);
+
+            if (rnd.Next(1, 5) <= 4)
+                gender = "Мужчина";
+            else
+                gender = "Женщина";
+
+            heroImgPath = "../../Data/HeroImg.jpg";
+        }
+
+        public string HeroImgPath
+        {
+            get { return heroImgPath; }
+            set
+            {
+                heroImgPath = value;
+                OnPropertyChanged("HeroImgPath");
+            }
+        }
+
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                age = value;
+                OnPropertyChanged("Age");
+            }
+        }
+
+        public string Gender
+        {
+            get { return gender; }
+            set
+            {
+                gender = value;
+                OnPropertyChanged("Gender");
+            }
         }
 
         public string Name

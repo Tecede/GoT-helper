@@ -25,7 +25,7 @@ namespace npcGenerator.View
         public Lords()
         {
             InitializeComponent();
-            DataContext = new LordsViewModel(new DefaultDialogService(), new JsonFileService());
+            DataContext = new LordsViewModel();
         }
     }
 }

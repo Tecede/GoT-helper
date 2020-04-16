@@ -1,20 +1,22 @@
-﻿using Newtonsoft.Json;
-using npcGenerator.Model;
-using System;
+﻿using npcGenerator.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace npcGenerator.ViewModel
 {
     class LordsViewModel : INotifyPropertyChanged
     {
-        private IDialogService dialogService;
-        private IFileService fileService;
         public ObservableCollection<Character> Characters { get; set; }
+
+        public LordsViewModel()
+        {
+            Characters = new ObservableCollection<Character>();
+
+            Character.StartUpload();
+            UploadLords();
+        }
 
         private Character selectedCharacter;
         public Character SelectedCharacter
@@ -84,18 +86,6 @@ namespace npcGenerator.ViewModel
             }
         }
 
-        public LordsViewModel(IDialogService dialogService, IFileService fileService)
-        {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
-            Characters = new ObservableCollection<Character>();
-
-            Character.StartUpload();
-
-            //UploadLords();
-        }
-
-        // команда сохранения файла
         private RelayCommand saveCommand;
         public RelayCommand SaveCommand
         {
@@ -104,42 +94,32 @@ namespace npcGenerator.ViewModel
                 return saveCommand ??
                   (saveCommand = new RelayCommand(obj =>
                   {
-                      //try
-                      //{
-                      //    if (dialogService.SaveFileDialog() == true)
-                      //    {
-                      //        fileService.Save("../../Data/Saves/Lords.txt", Characters.ToList());
-                      //        dialogService.ShowMessage("Файл сохранен");
-                      //    }
-                      //}
-                      //catch (Exception ex)
-                      //{
-                      //    dialogService.ShowMessage(ex.Message);
-                      //}
+                      using (CharacterContext context = new CharacterContext())
+                      {
+                          foreach (var ch in Characters)
+                          {
+                              context.Characters.Add(ch);
+                          }
+
+                          context.SaveChanges();
+                      }
                   }));
             }
         }
 
-        private async void UploadLords()
+        // TODO: Async?
+        private void UploadLords()
         {
-            //await Task.Factory.StartNew(() =>
-            //{
-            //    try
-            //    {
-            //        using (FileStream fs = File.Open("../../Data/Saves/Lords.txt", FileMode.Open))
-            //        {
-            //            var p = formatter.Deserialize(fs);
-            //        }
-            //        var characters = fileService.Open();
-            //        //Characters.Clear();
-            //        foreach (var p in characters)
-            //            Characters.Add(p);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        dialogService.ShowMessage(ex.Message);
-            //    }
-            //});
+            using (CharacterContext context = new CharacterContext())
+            {
+                var chList = context.Characters.ToList();
+
+                // Неявное преобразование List to ObservableCollection
+                foreach (var ch in chList)
+                {
+                    Characters.Add(ch);
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

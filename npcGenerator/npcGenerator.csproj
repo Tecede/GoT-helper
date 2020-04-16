@@ -180,6 +180,14 @@
     <Compile Include="Migrations\20200330064832_second.designer.cs">
       <DependentUpon>20200330064832_second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200416142644_third.cs" />
+    <Compile Include="Migrations\20200416142644_third.designer.cs">
+      <DependentUpon>20200416142644_third.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200416150948_fourmig.cs" />
+    <Compile Include="Migrations\20200416150948_fourmig.designer.cs">
+      <DependentUpon>20200416150948_fourmig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CharacterContextModelSnapshot.cs" />
     <Compile Include="Model\CharacterContext.cs" />
     <Compile Include="Model\Character.cs" />

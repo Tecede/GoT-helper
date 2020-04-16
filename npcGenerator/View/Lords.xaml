@@ -19,17 +19,18 @@
             <Setter Property="Margin" Value="5" />
         </Style>
     </Page.Resources>
-    <Grid>
+    <Grid Background="white">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding Characters}"
+        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Characters}"
                  SelectedItem="{Binding SelectedCharacter}" Margin="0,0.2,0,0.4">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -46,16 +47,40 @@
             <Button Command="{Binding SaveCommand}" Width="50" Height="50" >Save</Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedCharacter}" Margin="19,0.2,0,0.4">
-            <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  />
-            <TextBlock Text="Черта характера" />
-            <TextBlock Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-            <TextBlock Text="Привязанность" />
-            <TextBlock Text="{Binding Attachment, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-            <TextBlock Text="Идеал" />
-            <TextBlock Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
-            <TextBlock Text="Слабость" />
-            <TextBlock Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedCharacter}">
+            <ScrollViewer CanContentScroll="true">
+                <StackPanel>
+                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18"/>
+                    <TextBlock Text="{Binding clan, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBlock Text="Черта характера" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
+                    <TextBlock Text="Привязанность" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Attachment, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
+                    <TextBlock Text="Идеал" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
+                    <TextBlock Text="Слабость" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
+                    <TextBlock Height="65" TextWrapping="Wrap" Margin="10,10,10,10" Text="Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30"/>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+
+        <!-- TODO: Реализовать лист феодов -->
+        <!-- TODO: Не видит ни одну картинку -->
+        <StackPanel Grid.Column="2" DataContext="{Binding SelectedCharacter}">
+            <Image Source="{Binding HeroImgPath, UpdateSourceTrigger=PropertyChanged}" Margin="10,10,10,10"/>
+            <TextBlock Text="{Binding HeroImgPath, UpdateSourceTrigger=PropertyChanged}" />
+            
+            <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Characters}"
+                 SelectedItem="{Binding SelectedCharacter}" Margin="0,0.2,0,0.4">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Page>

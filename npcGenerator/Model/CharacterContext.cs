@@ -9,7 +9,7 @@ namespace npcGenerator.Model
 {
     public class CharacterContext : DbContext
     {
-        public DbSet<Character> CharactersCont { get; set; }
+        public DbSet<Character> Characters { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
