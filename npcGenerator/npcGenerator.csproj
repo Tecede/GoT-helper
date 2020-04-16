@@ -186,6 +186,7 @@
     <Compile Include="Model\JsonFileService.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
+    <Compile Include="ViewModel\LordsViewModel.cs" />
     <Compile Include="View\Exit.xaml.cs">
       <DependentUpon>Exit.xaml</DependentUpon>
     </Compile>

@@ -6,19 +6,18 @@
         xmlns:local="clr-namespace:npcGenerator"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="525">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="96*" />
-            <ColumnDefinition Width="421*" />
-        </Grid.ColumnDefinitions>
-        <StackPanel>
-            <Button Command="{Binding MainClick}" Content="Main" />
-            <Button Command="{Binding TestClick}" Content="Test" />
-            <Button Command="{Binding ExitClick}" Content="Exit" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Command="{Binding MainClick}" Content="Main" Width="80" />
+            <Button Command="{Binding LordsClick}" Content="Lords" Width="80" />
         </StackPanel>
         <Frame
-            Grid.Column="1"
+            Grid.Row="0"
             Content="{Binding CurrentPage}"
             NavigationUIVisibility="Hidden"
             Opacity="{Binding FrameOpacity}" />

@@ -1,8 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
-using System;
-using System.Linq;
 using System.Windows.Controls;
 using System.Threading.Tasks;
 using System.Threading;
@@ -11,12 +8,8 @@ namespace npcGenerator.Model
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
-        Character selectedCharacter;
-
-        // TODO: Вынести в модель
         private Page Main;
-        private Page Exit;
-        private Page Test;
+        private Page Lords;
 
         private Page currentPage;
         public Page CurrentPage
@@ -40,44 +33,24 @@ namespace npcGenerator.Model
             }
         }
 
-        IFileService fileService;
-        IDialogService dialogService;
-
-        // Коллекция, уведомляющая при изменении
-        public ObservableCollection<Character> Characters { get; set; }
-
-        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
-        {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
-
+        public ApplicationViewModel()
+        { 
             Main = new View.Main();
-            Test = new View.Test();
-            Exit = new View.Exit();
+            Lords = new View.Lords();
 
             FrameOpacity = 1;
             CurrentPage = Main;
-
-            Character.StartUpload();
-
-            Characters = new ObservableCollection<Character>
-            {
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character()
-            };
         }
 
-        private RelayCommand testClick;
-        public RelayCommand TestClick
+        private RelayCommand lordsClick;
+        public RelayCommand LordsClick
         {
             get
             {
-                return testClick ??
-                    (testClick = new RelayCommand(obj=>
+                return lordsClick ??
+                    (lordsClick = new RelayCommand(obj=>
                     {
-                        SlowOpacity(Test);
+                        SlowOpacity(Lords);
                     }));
             }
         }
@@ -92,126 +65,6 @@ namespace npcGenerator.Model
                     {
                         SlowOpacity(Main);
                     }));
-            }
-        }
-
-        // команда сохранения файла
-        private RelayCommand saveCommand;
-        public RelayCommand SaveCommand
-        {
-            get
-            {
-                return saveCommand ?? // Возвращает лево, если не NULL, иначе право
-                  (saveCommand = new RelayCommand(obj =>
-                  {
-                      try
-                      {
-                          if (dialogService.SaveFileDialog() == true)
-                          {
-                              fileService.Save(dialogService.FilePath, Characters.ToList());
-                              dialogService.ShowMessage("Файл сохранен");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
-            }
-        }
-
-        // команда открытия файла
-        private RelayCommand openCommand;
-        public RelayCommand OpenCommand
-        {
-            get
-            {
-                return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
-                  {
-                      try
-                      {
-                          if (dialogService.OpenFileDialog() == true)
-                          {
-                              var characters = fileService.Open(dialogService.FilePath);
-                              Characters.Clear();
-                              foreach (var p in characters)
-                                  Characters.Add(p);
-                              dialogService.ShowMessage("Файл открыт");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
-            }
-        }
-
-        // команда добавления нового объекта
-        private RelayCommand addCommand;
-        public RelayCommand AddCommand
-        {
-            get
-            {
-                return addCommand ??
-                  (addCommand = new RelayCommand(obj =>
-                  {
-                      Character character = new Character();
-                      Characters.Insert(0, character);
-                      selectedCharacter = character;
-                  }));
-            }
-        }
-
-        private RelayCommand removeCommand;
-        public RelayCommand RemoveCommand
-        {
-            get
-            {
-                return removeCommand ??
-                  (removeCommand = new RelayCommand(obj =>
-                  {
-                      Character character = obj as Character;
-                      if (character != null)
-                      {
-                          Characters.Remove(character);
-                      }
-                  },
-                 (obj) => Characters.Count > 0));
-            }
-        }
-        private RelayCommand doubleCommand;
-        public RelayCommand DoubleCommand
-        {
-            get
-            {
-                return doubleCommand ??
-                  (doubleCommand = new RelayCommand(obj =>
-                  {
-                      Character character = obj as Character;
-                      if (character != null)
-                      {
-                          Character characterCopy = new Character
-                          {
-                              Feature = character.Feature,
-                              Attachment = character.Attachment,
-                              Ideal = character.Ideal,
-                              Weakness = character.Weakness
-                          };
-                          Characters.Insert(0, characterCopy);
-                      }
-                  }));
-            }
-        }
-
-        public Character SelectedCharacter
-        {
-            get { return selectedCharacter; }
-            set
-            {
-                selectedCharacter = value;
-                OnPropertyChanged("SelectedCharacter");
             }
         }
 

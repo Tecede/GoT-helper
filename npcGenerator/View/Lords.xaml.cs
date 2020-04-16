@@ -1,4 +1,6 @@
-﻿using System;
+﻿using npcGenerator.Model;
+using npcGenerator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace npcGenerator.View
         public Lords()
         {
             InitializeComponent();
+            DataContext = new LordsViewModel(new DefaultDialogService(), new JsonFileService());
         }
     }
 }

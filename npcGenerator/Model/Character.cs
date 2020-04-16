@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace npcGenerator.Model
 {
@@ -13,7 +11,7 @@ namespace npcGenerator.Model
     {
         public int Id { get; set; }
 
-        private string name; // TODO: Реализовать считывание и генерацию имен
+        private string name; // TODO: Генерация имен по расам и полу
 
         private string feature;
         private string attachment;
@@ -27,6 +25,7 @@ namespace npcGenerator.Model
         private static List<string> IdealPool = new List<string>();
         private static List<string> WeaknessPool = new List<string>();
 
+        // TODO: Async
         private static List<string> Upload(string path, List<string> feature)
         {
             using (StreamReader features = new StreamReader($"../../Data/{path}.txt"))
@@ -51,7 +50,7 @@ namespace npcGenerator.Model
            AttachmentPool = Upload("Attachment", AttachmentPool);
            IdealPool = Upload("Ideal", IdealPool);
            WeaknessPool = Upload("weakness", WeaknessPool);
-
+           NamePool = Upload("Name", NamePool);  
         }
 
         public Character()
@@ -62,6 +61,7 @@ namespace npcGenerator.Model
             attachment = AttachmentPool.ElementAt(rnd.Next(0, AttachmentPool.Count()));
             ideal = IdealPool.ElementAt(rnd.Next(0, IdealPool.Count()));
             weakness = WeaknessPool.ElementAt(rnd.Next(0, WeaknessPool.Count()));
+            name = NamePool.ElementAt(rnd.Next(0, NamePool.Count()));
         }
 
         public string Name
