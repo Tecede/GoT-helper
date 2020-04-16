@@ -1,20 +1,22 @@
 ﻿using npcGenerator.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace npcGenerator.ViewModel
 {
     class LordsViewModel : INotifyPropertyChanged
     {
-        private IDialogService dialogService;
-        private IFileService fileService;
         public ObservableCollection<Character> Characters { get; set; }
+
+        public LordsViewModel()
+        {
+            Characters = new ObservableCollection<Character>();
+
+            Character.StartUpload();
+            UploadLords();
+        }
 
         private Character selectedCharacter;
         public Character SelectedCharacter
@@ -84,78 +86,46 @@ namespace npcGenerator.ViewModel
             }
         }
 
-        public LordsViewModel(IDialogService dialogService, IFileService fileService)
-        {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
-
-            Character.StartUpload();
-
-            Characters = new ObservableCollection<Character>
-            {
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character()
-            };
-        }
-
-        // команда сохранения файла
         private RelayCommand saveCommand;
         public RelayCommand SaveCommand
         {
             get
             {
-                return saveCommand ?? // Возвращает лево, если не NULL, иначе право
+                return saveCommand ??
                   (saveCommand = new RelayCommand(obj =>
                   {
-                      try
+                      using (CharacterContext context = new CharacterContext())
                       {
-                          if (dialogService.SaveFileDialog() == true)
+                          foreach (var ch in Characters)
                           {
-                              fileService.Save(dialogService.FilePath, Characters.ToList());
-                              dialogService.ShowMessage("Файл сохранен");
+                              context.Characters.Add(ch);
                           }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
+
+                          context.SaveChanges();
                       }
                   }));
             }
         }
 
-        private RelayCommand openCommand;
-        public RelayCommand OpenCommand
+        // TODO: Async?
+        private void UploadLords()
         {
-            get
+            using (CharacterContext context = new CharacterContext())
             {
-                return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
-                  {
-                      try
-                      {
-                          if (dialogService.OpenFileDialog() == true)
-                          {
-                              var characters = fileService.Open(dialogService.FilePath);
-                              Characters.Clear();
-                              foreach (var p in characters)
-                                  Characters.Add(p);
-                              dialogService.ShowMessage("Файл открыт");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
+                var chList = context.Characters.ToList();
+
+                // Неявное преобразование List to ObservableCollection
+                foreach (var ch in chList)
+                {
+                    Characters.Add(ch);
+                }
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "") 
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop)); 
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

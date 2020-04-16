@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace npcGenerator.Model
 {
-    class CharacterContext : DbContext
+    public class CharacterContext : DbContext
     {
         public DbSet<Character> Characters { get; set; }
 
