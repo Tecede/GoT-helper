@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace npcGenerator.Model
@@ -7,6 +8,7 @@ namespace npcGenerator.Model
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
+        private Page viewModel;
 
         public event EventHandler CanExecuteChanged // Вызывается при изменении условий
         {

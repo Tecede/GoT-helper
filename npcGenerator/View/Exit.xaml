@@ -9,6 +9,6 @@
       Title="Exit">
 
     <Grid>
-        
+        <TextBlock Text="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Page>

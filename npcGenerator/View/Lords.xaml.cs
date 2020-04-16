@@ -1,4 +1,6 @@
-﻿using System;
+﻿using npcGenerator.Model;
+using npcGenerator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +18,14 @@ using System.Windows.Shapes;
 namespace npcGenerator.View
 {
     /// <summary>
-    /// Логика взаимодействия для Welcome.xaml
+    /// Логика взаимодействия для Lords.xaml
     /// </summary>
-    public partial class Welcome : Page
+    public partial class Lords : Page
     {
-        public Welcome()
+        public Lords()
         {
             InitializeComponent();
+            DataContext = new LordsViewModel(new DefaultDialogService(), new JsonFileService());
         }
     }
 }

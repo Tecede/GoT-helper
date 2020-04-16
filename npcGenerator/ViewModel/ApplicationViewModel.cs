@@ -1,29 +1,22 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
-using System;
-using System.Linq;
 using System.Windows.Controls;
-using npcGenerator.View;
 using System.Threading.Tasks;
 using System.Threading;
 
 namespace npcGenerator.Model
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class ApplicationViewModel : INotifyPropertyChanged
     {
-        private Page welcome;
-        private Page main;
-        private Page exit;
-        private Page test;
+        private Page Main;
+        private Page Lords;
 
-        // TODO: Вынести в Model
         private Page currentPage;
         public Page CurrentPage
         {
             get { return currentPage; }
-            set 
-            { 
+            set
+            {
                 currentPage = value;
                 OnPropertyChanged("CurrentPage");
             }
@@ -40,28 +33,38 @@ namespace npcGenerator.Model
             }
         }
 
-        IFileService fileService;
-        IDialogService dialogService;
-
-        public MainWindowViewModel()
-        {
-            welcome = new View.Welcome();
-            main = new View.Main();
-            exit = new View.Exit();
-            test = new View.Test();
+        public ApplicationViewModel()
+        { 
+            Main = new View.Main();
+            Lords = new View.Lords();
 
             FrameOpacity = 1;
-            CurrentPage = welcome;
+            CurrentPage = Main;
         }
 
-        private RelayCommand bMenuMain_Click;
-        public RelayCommand BMenuMain_Click
+        private RelayCommand lordsClick;
+        public RelayCommand LordsClick
         {
             get
             {
-                //return new RelayCommand(() => SlowOpacity(Main));
-                return bMenuMain_Click ??
-                    (bMenuMain_Click = new RelayCommand(obj => SlowOpacity(Test)));
+                return lordsClick ??
+                    (lordsClick = new RelayCommand(obj=>
+                    {
+                        SlowOpacity(Lords);
+                    }));
+            }
+        }
+
+        private RelayCommand mainClick;
+        public RelayCommand MainClick
+        {
+            get
+            {
+                return mainClick ??
+                    (mainClick = new RelayCommand(obj =>
+                    {
+                        SlowOpacity(Main);
+                    }));
             }
         }
 
@@ -69,13 +72,14 @@ namespace npcGenerator.Model
         {
             await Task.Factory.StartNew(() =>
             {
-                for (double i = 1.0; i > 0.0; i -= 0.1)
+                for(double i = 1.0; i > 0.0; i-= 0.1)
                 {
                     FrameOpacity = i;
                     Thread.Sleep(50);
                 }
                 CurrentPage = page;
-                for (double i = 0.0; i < 1.1; i = +0.1)
+
+                for (double i = 0.0; i < 1.1; i += 0.1)
                 {
                     FrameOpacity = i;
                     Thread.Sleep(50);
@@ -83,7 +87,7 @@ namespace npcGenerator.Model
             });
         }
 
-
+        // Метод, обрабатывающий событие PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "") // Получает имя метода, вызывающего этот метод
         {

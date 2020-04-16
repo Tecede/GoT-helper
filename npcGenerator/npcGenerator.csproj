@@ -185,25 +185,19 @@
     <Compile Include="Model\IFileService.cs" />
     <Compile Include="Model\JsonFileService.cs" />
     <Compile Include="Model\RelayCommand.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="ViewModel\ApplicationViewModel.cs" />
+    <Compile Include="ViewModel\LordsViewModel.cs" />
     <Compile Include="View\Exit.xaml.cs">
       <DependentUpon>Exit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Welcome.xaml.cs">
-      <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Exit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LordsGenerator.xaml">
+    <Page Include="View\Lords.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,19 +213,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\LordsGeneratorViewModel.cs" />
-    <Compile Include="View\LordsGenerator.xaml.cs">
-      <DependentUpon>LordsGenerator.xaml</DependentUpon>
+    <Compile Include="View\Lords.xaml.cs">
+      <DependentUpon>Lords.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Welcome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
