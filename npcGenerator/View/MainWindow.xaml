@@ -15,6 +15,9 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button Command="{Binding MainClick}" Content="Main" Width="80" />
             <Button Command="{Binding LordsClick}" Content="Lords" Width="80" />
+            <Button Command="{Binding CastleClick}" Content="Castle" Width="80" />
+            <Button Command="{Binding ShopClick}" Content="Shop" Width="80" />
+            <Button Command="{Binding GotpediaClick}" Content="GOTpedia" Width="80" />
         </StackPanel>
         <Frame
             Grid.Row="0"

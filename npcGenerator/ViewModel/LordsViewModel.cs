@@ -1,11 +1,11 @@
-﻿using npcGenerator.Model;
+﻿using Newtonsoft.Json;
+using npcGenerator.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace npcGenerator.ViewModel
@@ -88,16 +88,11 @@ namespace npcGenerator.ViewModel
         {
             this.dialogService = dialogService;
             this.fileService = fileService;
+            Characters = new ObservableCollection<Character>();
 
             Character.StartUpload();
 
-            Characters = new ObservableCollection<Character>
-            {
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character()
-            };
+            //UploadLords();
         }
 
         // команда сохранения файла
@@ -106,56 +101,51 @@ namespace npcGenerator.ViewModel
         {
             get
             {
-                return saveCommand ?? // Возвращает лево, если не NULL, иначе право
+                return saveCommand ??
                   (saveCommand = new RelayCommand(obj =>
                   {
-                      try
-                      {
-                          if (dialogService.SaveFileDialog() == true)
-                          {
-                              fileService.Save(dialogService.FilePath, Characters.ToList());
-                              dialogService.ShowMessage("Файл сохранен");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
+                      //try
+                      //{
+                      //    if (dialogService.SaveFileDialog() == true)
+                      //    {
+                      //        fileService.Save("../../Data/Saves/Lords.txt", Characters.ToList());
+                      //        dialogService.ShowMessage("Файл сохранен");
+                      //    }
+                      //}
+                      //catch (Exception ex)
+                      //{
+                      //    dialogService.ShowMessage(ex.Message);
+                      //}
                   }));
             }
         }
 
-        private RelayCommand openCommand;
-        public RelayCommand OpenCommand
+        private async void UploadLords()
         {
-            get
-            {
-                return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
-                  {
-                      try
-                      {
-                          if (dialogService.OpenFileDialog() == true)
-                          {
-                              var characters = fileService.Open(dialogService.FilePath);
-                              Characters.Clear();
-                              foreach (var p in characters)
-                                  Characters.Add(p);
-                              dialogService.ShowMessage("Файл открыт");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
-            }
+            //await Task.Factory.StartNew(() =>
+            //{
+            //    try
+            //    {
+            //        using (FileStream fs = File.Open("../../Data/Saves/Lords.txt", FileMode.Open))
+            //        {
+            //            var p = formatter.Deserialize(fs);
+            //        }
+            //        var characters = fileService.Open();
+            //        //Characters.Clear();
+            //        foreach (var p in characters)
+            //            Characters.Add(p);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        dialogService.ShowMessage(ex.Message);
+            //    }
+            //});
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "") 
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop)); 
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
