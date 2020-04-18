@@ -19,11 +19,10 @@ namespace npcGenerator.Model
         private string weakness;
         private int age;
         private string gender;
-        private string clan;
+        private string clan; // TODO: Адекватная логика генерации клана
         private string knowledge;
         private string race;
         private string heroImgPath;
-       
 
         private static List<string> NamePool = new List<string>();
         private static List<string> SurnamePool = new List<string>();
@@ -31,6 +30,7 @@ namespace npcGenerator.Model
         private static List<string> AttachmentPool = new List<string>();
         private static List<string> IdealPool = new List<string>();
         private static List<string> WeaknessPool = new List<string>();
+        private static List<string> ClanPool = new List<string>();
 
         // TODO: Async
         private static List<string> Upload(string path, List<string> feature)
@@ -57,7 +57,8 @@ namespace npcGenerator.Model
            AttachmentPool = Upload("Attachment", AttachmentPool);
            IdealPool = Upload("Ideal", IdealPool);
            WeaknessPool = Upload("weakness", WeaknessPool);
-           NamePool = Upload("Name", NamePool);  
+           NamePool = Upload("Name", NamePool);
+           ClanPool = Upload("Clan", ClanPool);
         }
 
         public Character()
@@ -69,6 +70,9 @@ namespace npcGenerator.Model
             ideal = IdealPool.ElementAt(rnd.Next(0, IdealPool.Count()));
             weakness = WeaknessPool.ElementAt(rnd.Next(0, WeaknessPool.Count()));
             name = NamePool.ElementAt(rnd.Next(0, NamePool.Count()));
+            clan = ClanPool.ElementAt(rnd.Next(0, ClanPool.Count()));
+            race = "RaceTest";
+            Knowledge = "KnowledgeTest";
 
             age = rnd.Next(16, 59);
 
@@ -80,6 +84,33 @@ namespace npcGenerator.Model
             heroImgPath = "../../Data/HeroImg.jpg";
         }
 
+        public string Race
+        {
+            get { return race; }
+            set
+            {
+                race = value;
+                OnPropertyChanged("Race");
+            }
+        }
+        public string Knowledge
+        {
+            get { return knowledge; }
+            set
+            {
+                knowledge = value;
+                OnPropertyChanged("Knowledge");
+            }
+        }
+        public string Clan
+        {
+            get { return clan; }
+            set
+            {
+                clan = value;
+                OnPropertyChanged("Clan");
+            }
+        }
         public string HeroImgPath
         {
             get { return heroImgPath; }
@@ -89,7 +120,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("HeroImgPath");
             }
         }
-
         public int Age
         {
             get { return age; }
@@ -99,7 +129,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("Age");
             }
         }
-
         public string Gender
         {
             get { return gender; }
@@ -109,7 +138,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("Gender");
             }
         }
-
         public string Name
         {
             get { return name; }
@@ -119,7 +147,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("Name");
             }
         }
-
         public string Feature
         {
             get { return feature; }
@@ -129,7 +156,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("Feature");
             }
         }
-
         public string Attachment
         {
             get { return attachment; }
@@ -139,7 +165,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("Attachment");
             }
         }
-
         public string Ideal
         {
             get { return ideal; }
@@ -149,7 +174,6 @@ namespace npcGenerator.Model
                 OnPropertyChanged("Ideal");
             }
         }
-
         public string Weakness
         {
             get { return weakness; }

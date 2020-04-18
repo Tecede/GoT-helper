@@ -3,14 +3,16 @@ using npcGenerator.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace npcGenerator.Migrations
 {
     [DbContext(typeof(CharacterContext))]
-    partial class CharacterContextModelSnapshot : ModelSnapshot
+    [Migration("20200418070255_fifth")]
+    partial class fifth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace npcGenerator.Migrations
                     b.Property<string>("Attachment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Clan")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Feature")
                         .HasColumnType("nvarchar(max)");
 
@@ -46,13 +45,7 @@ namespace npcGenerator.Migrations
                     b.Property<string>("Ideal")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Knowledge")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Race")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Weakness")
