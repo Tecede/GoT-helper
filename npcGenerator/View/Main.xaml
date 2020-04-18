@@ -9,6 +9,6 @@
       Title="Main">
 
     <Grid>
-        <Image Source="../Data/MainBack.jpg" Width="500" Height="500"/>
+        <Image Source="../MainBack.jpg" Width="500" Height="500"/>
     </Grid>
 </Page>

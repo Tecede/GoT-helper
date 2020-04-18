@@ -188,18 +188,6 @@
     <Compile Include="Migrations\20200416150948_fourmig.designer.cs">
       <DependentUpon>20200416150948_fourmig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20200418070255_fifth.cs" />
-    <Compile Include="Migrations\20200418070255_fifth.designer.cs">
-      <DependentUpon>20200418070255_fifth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200418070613_whereisclan.cs" />
-    <Compile Include="Migrations\20200418070613_whereisclan.designer.cs">
-      <DependentUpon>20200418070613_whereisclan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200418071133_Race.cs" />
-    <Compile Include="Migrations\20200418071133_Race.designer.cs">
-      <DependentUpon>20200418071133_Race.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\CharacterContextModelSnapshot.cs" />
     <Compile Include="Model\CharacterContext.cs" />
     <Compile Include="Model\Character.cs" />

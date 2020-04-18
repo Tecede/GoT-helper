@@ -12,19 +12,17 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Command="{Binding MainClick}" Content="Main" Width="80" />
+            <Button Command="{Binding LordsClick}" Content="Lords" Width="80" />
+            <Button Command="{Binding CastleClick}" Content="Castle" Width="80" />
+            <Button Command="{Binding ShopClick}" Content="Shop" Width="80" />
+            <Button Command="{Binding GotpediaClick}" Content="GOTpedia" Width="80" />
+        </StackPanel>
         <Frame
             Grid.Row="0"
             Content="{Binding CurrentPage}"
             NavigationUIVisibility="Hidden"
             Opacity="{Binding FrameOpacity}" />
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Command="{Binding MainClick}" Content="Main" Width="80" Margin="10,10,10,10"/>
-            <Button Command="{Binding LordsClick}" Content="Lords" Width="80" Margin="10,10,10,10"/>
-            <Button Command="{Binding CastleClick}" Content="Castle" Width="80" Margin="10,10,10,10"/>
-            <Button Command="{Binding ShopClick}" Content="Shop" Width="80" Margin="10,10,10,10"/>
-            <Button Command="{Binding QuestClick}" Content="Quests" Width="80" Margin="10,10,10,10"/>
-            <Button Command="{Binding TroopsClick}" Content="Troops" Width="80" Margin="10,10,10,10"/>
-            <Button Command="{Binding GotpediaClick}" Content="GOTpedia" Width="80" Margin="10,10,10,10"/>
-        </StackPanel>
     </Grid>
 </Window>

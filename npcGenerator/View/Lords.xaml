@@ -47,11 +47,10 @@
             <Button Command="{Binding SaveCommand}" Width="50" Height="50" >Save</Button>
         </StackPanel>
 
-        <Grid Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedCharacter}">
-            <ScrollViewer>
+        <StackPanel Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedCharacter}">
+            <ScrollViewer CanContentScroll="true">
                 <StackPanel>
                     <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18"/>
-                    <TextBlock Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"  />
                     <TextBlock Text="{Binding clan, UpdateSourceTrigger=PropertyChanged}"  />
                     <TextBlock Text="Черта характера" Margin="10,0,0,0"/>
                     <TextBlock Text="{Binding Feature, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
@@ -61,9 +60,10 @@
                     <TextBlock Text="{Binding Ideal, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
                     <TextBlock Text="Слабость" Margin="10,0,0,0"/>
                     <TextBlock Text="{Binding Weakness, UpdateSourceTrigger=PropertyChanged}" Height="65" TextWrapping="Wrap" Margin="10,10,10,10"/>
+                    <TextBlock Height="65" TextWrapping="Wrap" Margin="10,10,10,10" Text="Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30Lorem30"/>
                 </StackPanel>
             </ScrollViewer>
-        </Grid>
+        </StackPanel>
 
         <!-- TODO: Реализовать лист феодов -->
         <!-- TODO: Не видит ни одну картинку -->
