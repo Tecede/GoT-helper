@@ -188,6 +188,10 @@
     <Compile Include="Migrations\20200416150948_fourmig.designer.cs">
       <DependentUpon>20200416150948_fourmig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200418073516_RaceKnowledgeCLan.cs" />
+    <Compile Include="Migrations\20200418073516_RaceKnowledgeCLan.designer.cs">
+      <DependentUpon>20200418073516_RaceKnowledgeCLan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CharacterContextModelSnapshot.cs" />
     <Compile Include="Model\CharacterContext.cs" />
     <Compile Include="Model\Character.cs" />
@@ -195,6 +199,8 @@
     <Compile Include="Model\IDialogService.cs" />
     <Compile Include="Model\IFileService.cs" />
     <Compile Include="Model\JsonFileService.cs" />
+    <Compile Include="Model\MarketItem.cs" />
+    <Compile Include="Model\MarketItemContext.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\LordsViewModel.cs" />

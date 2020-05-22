@@ -6,23 +6,24 @@
         xmlns:local="clr-namespace:npcGenerator"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
-    <Grid>
+        Title="MainWindow" MinHeight="600" MinWidth="1000">
+    <Grid Background="#808080">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Command="{Binding MainClick}" Content="Main" Width="80" />
-            <Button Command="{Binding LordsClick}" Content="Lords" Width="80" />
-            <Button Command="{Binding CastleClick}" Content="Castle" Width="80" />
-            <Button Command="{Binding ShopClick}" Content="Shop" Width="80" />
-            <Button Command="{Binding GotpediaClick}" Content="GOTpedia" Width="80" />
+        <StackPanel Background="#808080" Orientation="Horizontal" Grid.Row="1"  HorizontalAlignment="center">
+            <Button Command="{Binding MainClick}" Content="Main" Width="80" MaxHeight="80" Margin="5"/>
+            <Button Command="{Binding LordsClick}" Content="Lords" Width="80" MaxHeight="80" Margin="5"/>
+            <Button Command="{Binding CastleClick}" Content="Castle" Width="80" MaxHeight="80" Margin="5"/>
+            <Button Command="{Binding ShopClick}" Content="Shop" Width="80" MaxHeight="80" Margin="5"/>
+            <Button Command="{Binding GotpediaClick}" Content="GOTpedia" Width="80" MaxHeight="80" Margin="5"/>
         </StackPanel>
         <Frame
             Grid.Row="0"
             Content="{Binding CurrentPage}"
             NavigationUIVisibility="Hidden"
-            Opacity="{Binding FrameOpacity}" />
+            Opacity="{Binding FrameOpacity}" 
+        />
     </Grid>
 </Window>
