@@ -15,7 +15,7 @@ namespace npcGenerator.ViewModel
             Characters = new ObservableCollection<Character>();
 
             Character.StartUpload();
-            UploadLords();
+            //UploadLords();
         }
 
         private Character selectedCharacter;
