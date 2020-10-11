@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Threading.Tasks;
 using System.Threading;
+using npcGenerator.View;
 
 namespace npcGenerator.Model
 {
@@ -10,6 +11,8 @@ namespace npcGenerator.Model
     {
         private Page Main;
         private Page Lords;
+        private Page Encounters;
+
 
         private Page currentPage;
         public Page CurrentPage
@@ -35,8 +38,9 @@ namespace npcGenerator.Model
 
         public ApplicationViewModel()
         { 
-            Main = new View.Main();
-            Lords = new View.Lords();
+            Main = new Main();
+            Lords = new Lords();
+            Encounters = new Encounters();
 
             FrameOpacity = 1;
             CurrentPage = Main;
@@ -64,6 +68,19 @@ namespace npcGenerator.Model
                     (mainClick = new RelayCommand(obj =>
                     {
                         SlowOpacity(Main);
+                    }));
+            }
+        }
+
+        private RelayCommand encounterClick;
+        public RelayCommand EncounterClick
+        {
+            get
+            {
+                return encounterClick ??
+                    (encounterClick = new RelayCommand(obj =>
+                    {
+                        SlowOpacity(Encounters);
                     }));
             }
         }

@@ -172,6 +172,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\CharacterHelper.cs" />
     <Compile Include="Migrations\20200329090016_Initial.cs" />
     <Compile Include="Migrations\20200329090016_Initial.designer.cs">
       <DependentUpon>20200329090016_Initial.cs</DependentUpon>
@@ -192,10 +193,15 @@
     <Compile Include="Migrations\20200418073516_RaceKnowledgeCLan.designer.cs">
       <DependentUpon>20200418073516_RaceKnowledgeCLan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201011031342_NePomnuChtoDobavil.cs" />
+    <Compile Include="Migrations\20201011031342_NePomnuChtoDobavil.designer.cs">
+      <DependentUpon>20201011031342_NePomnuChtoDobavil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CharacterContextModelSnapshot.cs" />
     <Compile Include="Model\CharacterContext.cs" />
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\DefaultDialogService.cs" />
+    <Compile Include="Model\Encounter.cs" />
     <Compile Include="Model\IDialogService.cs" />
     <Compile Include="Model\IFileService.cs" />
     <Compile Include="Model\JsonFileService.cs" />
@@ -203,7 +209,12 @@
     <Compile Include="Model\MarketItemContext.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
+    <Compile Include="ViewModel\EncounterViewModel.cs" />
     <Compile Include="ViewModel\LordsViewModel.cs" />
+    <Page Include="View\Encounters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Lords.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +230,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Encounters.xaml.cs">
+      <DependentUpon>Encounters.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Lords.xaml.cs">
       <DependentUpon>Lords.xaml</DependentUpon>
