@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using npcGenerator.Helpers;
+using System;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -10,8 +9,7 @@ namespace npcGenerator.Model
 	public class Character : INotifyPropertyChanged
 	{
 		public int Id { get; set; }
-
-		private string name; // TODO: Генерация имен по расам и полу
+		private string name;
 		private string feature;
 		private string attachment;
 		private string ideal;
@@ -36,88 +34,28 @@ namespace npcGenerator.Model
 		private string manners;
 		private string quest;
 
-		private static List<string> FamilyPool = new List<string>();
-		private static List<string> ProfessionPool = new List<string>();
-		private static List<string> AlignmentPool = new List<string>();
-		private static List<string> RichnessPool = new List<string>();
-		private static List<string> SignPool = new List<string>();
-		private static List<string> HairPool = new List<string>();
-		private static List<string> HairColorPool = new List<string>();
-		private static List<string> BeardPool = new List<string>();
-		private static List<string> EyeColorPool = new List<string>();
-		private static List<string> ClothPool = new List<string>();
-		private static List<string> InteractionPool = new List<string>();
-		private static List<string> MannersPool = new List<string>();
-		private static List<string> QuestPool = new List<string>();
-		private static List<string> NamePool = new List<string>();
-		private static List<string> SurnamePool = new List<string>();
-		private static List<string> FeaturePool = new List<string>();
-		private static List<string> AttachmentPool = new List<string>();
-		private static List<string> IdealPool = new List<string>();
-		private static List<string> WeaknessPool = new List<string>();
-
-		// TODO: Async
-		private static List<string> Upload(string path, List<string> feature)
-		{
-			using (StreamReader features = new StreamReader($"../../Data/{path}.txt"))
-			{
-				while (true)
-				{
-					string temp = features.ReadLine();
-
-					if (temp == null)
-						break;
-					else
-						feature.Add(temp);
-				}
-
-				return feature;
-			}
-		}
-
-		public static void StartUpload()
-		{
-			QuestPool = Upload("Quest", QuestPool);
-			MannersPool = Upload("Manners", MannersPool);
-			InteractionPool = Upload("Interaction", InteractionPool);
-			ClothPool = Upload("Cloth", ClothPool);
-			EyeColorPool = Upload("EyeColor", EyeColorPool);
-			BeardPool = Upload("Beard", BeardPool);
-			HairColorPool = Upload("HairColor", HairColorPool);
-			HairPool = Upload("Hair", HairPool);
-			SignPool = Upload("Sign", SignPool);
-			RichnessPool = Upload("Richness", RichnessPool);
-			AlignmentPool = Upload("Alignment", AlignmentPool);
-			ProfessionPool = Upload("Profession", ProfessionPool);
-			FeaturePool = Upload("Feature", FeaturePool);
-			AttachmentPool = Upload("Attachment", AttachmentPool);
-			IdealPool = Upload("Ideal", IdealPool);
-			WeaknessPool = Upload("weakness", WeaknessPool);
-			NamePool = Upload("Name", NamePool);
-			FamilyPool = Upload("Family", FamilyPool);
-		}
-
 		public Character()
 		{
 			Random rnd = new Random();
 
-			feature = FeaturePool.ElementAt(rnd.Next(0, FeaturePool.Count()));
-			attachment = AttachmentPool.ElementAt(rnd.Next(0, AttachmentPool.Count()));
-			ideal = IdealPool.ElementAt(rnd.Next(0, IdealPool.Count()));
-			weakness = WeaknessPool.ElementAt(rnd.Next(0, WeaknessPool.Count()));
-			name = NamePool.ElementAt(rnd.Next(0, NamePool.Count()));
-			quest = QuestPool.ElementAt(rnd.Next(0, QuestPool.Count()));
-			manners = MannersPool.ElementAt(rnd.Next(0, MannersPool.Count()));
-			interaction = InteractionPool.ElementAt(rnd.Next(0, InteractionPool.Count()));
-			cloth = ClothPool.ElementAt(rnd.Next(0, ClothPool.Count()));
-			eyeColor = EyeColorPool.ElementAt(rnd.Next(0, EyeColorPool.Count()));
-			beard = BeardPool.ElementAt(rnd.Next(0, BeardPool.Count()));
-			hairColor = HairColorPool.ElementAt(rnd.Next(0, HairColorPool.Count()));
-			hair = HairPool.ElementAt(rnd.Next(0, HairPool.Count()));
-			sign = SignPool.ElementAt(rnd.Next(0, SignPool.Count()));
-			richness = RichnessPool.ElementAt(rnd.Next(0, RichnessPool.Count()));
-			alignment = AlignmentPool.ElementAt(rnd.Next(0, AlignmentPool.Count()));
-			profession = ProfessionPool.ElementAt(rnd.Next(0, ProfessionPool.Count()));
+			feature = CharacterHelper.FeaturePool.ElementAt(rnd.Next(0, CharacterHelper.FeaturePool.Count()));
+			attachment = CharacterHelper.AttachmentPool.ElementAt(rnd.Next(0, CharacterHelper.AttachmentPool.Count()));
+			ideal = CharacterHelper.IdealPool.ElementAt(rnd.Next(0, CharacterHelper.IdealPool.Count()));
+			weakness = CharacterHelper.WeaknessPool.ElementAt(rnd.Next(0, CharacterHelper.WeaknessPool.Count()));
+			name = CharacterHelper.NamePool.ElementAt(rnd.Next(0, CharacterHelper.NamePool.Count()));
+			//family = FamilyPool.ElementAt(rnd.Next(0, FamilyPool.Count()));
+			quest = CharacterHelper.QuestPool.ElementAt(rnd.Next(0, CharacterHelper.QuestPool.Count()));
+			manners = CharacterHelper.MannersPool.ElementAt(rnd.Next(0, CharacterHelper.MannersPool.Count()));
+			interaction = CharacterHelper.InteractionPool.ElementAt(rnd.Next(0, CharacterHelper.InteractionPool.Count()));
+			cloth = CharacterHelper.ClothPool.ElementAt(rnd.Next(0, CharacterHelper.ClothPool.Count()));
+			eyeColor = CharacterHelper.EyeColorPool.ElementAt(rnd.Next(0, CharacterHelper.EyeColorPool.Count()));
+			beard = CharacterHelper.BeardPool.ElementAt(rnd.Next(0, CharacterHelper.BeardPool.Count()));
+			hairColor = CharacterHelper.HairColorPool.ElementAt(rnd.Next(0, CharacterHelper.HairColorPool.Count()));
+			hair = CharacterHelper.HairPool.ElementAt(rnd.Next(0, CharacterHelper.HairPool.Count()));
+			sign = CharacterHelper.SignPool.ElementAt(rnd.Next(0, CharacterHelper.SignPool.Count()));
+			richness = CharacterHelper.RichnessPool.ElementAt(rnd.Next(0, CharacterHelper.RichnessPool.Count()));
+			alignment = CharacterHelper.AlignmentPool.ElementAt(rnd.Next(0, CharacterHelper.AlignmentPool.Count()));
+			profession = CharacterHelper.ProfessionPool.ElementAt(rnd.Next(0, CharacterHelper.ProfessionPool.Count()));
 
 			age = rnd.Next(16, 59);
 

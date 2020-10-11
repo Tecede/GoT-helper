@@ -15,7 +15,7 @@
         <StackPanel Background="#808080" Orientation="Horizontal" Grid.Row="1"  HorizontalAlignment="center">
             <Button Command="{Binding MainClick}" Content="Main" Width="80" MaxHeight="80" Margin="5"/>
             <Button Command="{Binding LordsClick}" Content="Lords" Width="80" MaxHeight="80" Margin="5"/>
-            <Button Command="{Binding CastleClick}" Content="Castle" Width="80" MaxHeight="80" Margin="5"/>
+            <Button Command="{Binding EncounterClick}" Content="Encounters" Width="80" MaxHeight="80" Margin="5"/>
             <Button Command="{Binding ShopClick}" Content="Shop" Width="80" MaxHeight="80" Margin="5"/>
             <Button Command="{Binding GotpediaClick}" Content="GOTpedia" Width="80" MaxHeight="80" Margin="5"/>
         </StackPanel>

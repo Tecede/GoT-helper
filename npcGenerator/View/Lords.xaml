@@ -60,41 +60,47 @@
                         <TextBlock FontSize="18">Имя:</TextBlock>
                         <StackPanel Margin="0, 10, 10, 0" >
                             <TextBlock>Раса:</TextBlock>
+                            <TextBlock>Пол:</TextBlock>
                             <TextBlock>Возраст:</TextBlock>
                             <TextBlock>Мировоззрение:</TextBlock>
                         </StackPanel>
 
-                        <StackPanel Margin="0, 10, 10, 0" >
-                        <TextBlock>Клан:</TextBlock>
-                        <TextBlock>Профессия:</TextBlock>
-                        <TextBlock>Обеспеченность:</TextBlock>
+                        <StackPanel Margin="0, 15, 10, 0" >
+                            <TextBlock>Клан:</TextBlock>
+                            <TextBlock>Профессия:</TextBlock>
+                            <TextBlock>Обеспеченность:</TextBlock>
                         </StackPanel>
+                        
                         <StackPanel Margin="0, 10, 10, 0" >
-                        <TextBlock>Примета:</TextBlock>
-                        <TextBlock>Одежда:</TextBlock>
-                        <TextBlock>Глаза:</TextBlock>
-                        <TextBlock>Цвет волос:</TextBlock>
-                        <TextBlock>Прическа:</TextBlock>
-                        <TextBlock>Борода:</TextBlock>
+                            <TextBlock>Примета:</TextBlock>
+                            <TextBlock>Одежда:</TextBlock>
+                            <TextBlock>Глаза:</TextBlock>
+                            <TextBlock>Цвет волос:</TextBlock>
+                            <TextBlock>Прическа:</TextBlock>
+                            <TextBlock>Борода:</TextBlock>
                         </StackPanel>
+                        
                         <StackPanel Margin="0, 10, 10, 0" >
-                                    <TextBlock>Задания:</TextBlock>
-                        <TextBlock>Манеры:</TextBlock>
-                        <TextBlock>Взаимодействие:</TextBlock>
-                        <TextBlock>Знания:</TextBlock>
+                            <TextBlock>Задания:</TextBlock>
+                            <TextBlock>Манеры:</TextBlock>
+                            <TextBlock>Взаимодействие:</TextBlock>
+                            <TextBlock>Знания:</TextBlock>
                         </StackPanel>
+                        
+                        
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
                         <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18"/>
                         <StackPanel Margin="0, 10, 10, 0">
                             <TextBlock Text="{Binding Race, UpdateSourceTrigger=PropertyChanged}"  />
+                            <TextBlock Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}"  />
                             <TextBlock Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"  />
-                            <TextBlock Text="{Binding Alignment, UpdateSourceTrigger=PropertyChanged}"  />
+                            <TextBox Text="{Binding Alignment, UpdateSourceTrigger=PropertyChanged}"  />
                         </StackPanel>
                         <StackPanel Margin="0, 10, 10, 0">
-                            <TextBlock Text="{Binding Clan, UpdateSourceTrigger=PropertyChanged}"  />
-                            <TextBlock Text="{Binding Profession, UpdateSourceTrigger=PropertyChanged}"  />
+                            <TextBox Text="{Binding Clan, UpdateSourceTrigger=PropertyChanged}"  />
+                            <TextBlock Text="{Binding Profession, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock Text="{Binding Richness, UpdateSourceTrigger=PropertyChanged}"  />
                         </StackPanel>
                         <StackPanel Margin="0, 10, 10, 0">

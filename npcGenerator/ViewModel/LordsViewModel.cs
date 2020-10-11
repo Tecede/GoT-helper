@@ -1,4 +1,5 @@
-﻿using npcGenerator.Model;
+﻿using npcGenerator.Helpers;
+using npcGenerator.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace npcGenerator.ViewModel
         {
             Characters = new ObservableCollection<Character>();
 
-            Character.StartUpload();
+            CharacterHelper.Startup();
             //UploadLords();
         }
 
